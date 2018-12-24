@@ -1,12 +1,31 @@
-// https://compprog.wordpress.com/2007/10/17/generating-combinations-1/
+// The idea started here: https://compprog.wordpress.com/2007/10/17/generating-combinations-1/
+// I have translated this C program into Dart (and corrected a mistake on it).
+// Still have some ideas to make this file better, just waiting free time to do that
+// Not just ints for example and print everything (from k to 0).
+//
+// What this file actually do:
+// Given a ser of numbers {1, 2, 3, ..., n}, return all the combinations without repetition of this set.
+//
+// So, what are the ways of choosing 2 elements from a set of 4, {1, 2, 3, 4}?
+// {1, 2}
+// {1, 3}
+// {1, 4}
+// {2, 3}
+// {2, 4}
+// {3, 4}
+//
+// Obs: It should have returned will all number of elements, which is very easy to do..
+// Next commit/version i'll do it though..
 
 void printc(comb, k) {
     var string = StringBuffer('{');
-    int i;
-    for (i = 0; i < k; ++i)
+
+    for (int i = 0; i < k; ++i)
         string.write(comb[i] + 1);
+
     string.write("\b\b}\n");
-  print(string);
+
+    print(string);
 }
 
 /*
@@ -44,11 +63,9 @@ int main() {
     int k = 3; /* The size of the subsets; for {1, 2}, {1, 3}, ... it's 2 */
     var comb = List<int>(); /* comb[i] is the index of the i-th element in the
             combination */
-//   	int combSize = 16;
 
     /* Setup comb for the initial combination */
-    int i;
-    for (i = 0; i < k; i++)
+    for (int i = 0; i < k; i++)
         comb.add(i);
 
     /* Print the first combination */
