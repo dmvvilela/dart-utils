@@ -1,8 +1,9 @@
+// This code is hosted on my github: https://github.com/dmvvilela
 // The idea started here: https://compprog.wordpress.com/2007/10/17/generating-_combinations-1/
 // I have translated this C program into Dart, corrected a mistake on it and added some new features.
 //
 // What this file actually do:
-// Given a set of numbers {1, 2, 3, ..., n}, return all the _combinations without repetition of this set.
+// Given a set of numbers {1, 2, 3, ..., n}, return all the combinations without repetition of this set.
 //
 // So, what are the ways of choosing 2 elements from a set of 4, {1, 2, 3, 4}?
 // {1, 2}
