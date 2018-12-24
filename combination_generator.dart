@@ -25,18 +25,19 @@ class CombinationGenerator {
   }
 
   /*
-      _nextCombination(List<int> _combinations, int subsetSize, int setSize)
-          Generates the next combination of n elements as k after _combinations
-
-      comb => the previous combination ( use (0, 1, 2, ..., k) for first)
-      subsetSize (k) => the size of the subsets to generate
-      setSize (n)    => the size of the original set
-
-      Returns: 1 if a valid combination was found 0, otherwise.
+   *  _nextCombination(int subsetSize, int setSize)
+   *      Generates the next combination of n elements as k after _combinations
+   *
+   *  _combinations => the previous combination ( use (0, 1, 2, ..., k) for first)
+   *  subsetSize (k) => the size of the subsets to generate
+   *  setSize (n)    => the size of the original set
+   *
+   *  Returns: 1 if a valid combination was found 0, otherwise.
   */
   int _nextCombination(subsetSize, setSize) {
     int i = subsetSize - 1;
     _combinations[i]++;
+
     while ((i > 0) && (_combinations[i] >= setSize - subsetSize + 1 + i)) {
       i--;
       _combinations[i]++;
@@ -48,25 +49,13 @@ class CombinationGenerator {
       return 0;
     }
 
-    /* comb now looks like (..., x, n, n, n, ..., n).
+    /* _combinations now looks like (..., x, n, n, n, ..., n).
     Turn it into (..., x, x + 1, x + 2, ...) */
     for (i = i + 1; i < subsetSize; ++i) {
       _combinations[i] = _combinations[i - 1] + 1;
     }
 
     return 1;
-  }
-
-  void _printer(subsetSize) {
-    var string = StringBuffer('{');
-
-    for (int i = 0; i < subsetSize; i++) {
-      string.write(_combinations[i] + 1);
-    }
-
-    string.write("}");
-
-    print(string);
   }
 
   List<int> _indexer(subsetSize) {
@@ -77,21 +66,6 @@ class CombinationGenerator {
     }
 
     return indexes;
-  }
-
-  void printSubsetCombinations(subsetSize, setSize) {
-    if (subsetSize > setSize) return;
-
-    /* If it was used before, it has to be reinitialized. */
-    _initializeCombinations(subsetSize);
-
-    /* Print the first combination */
-    _printer(subsetSize);
-
-    /* Generate and print all the other _combinations */
-    while (_nextCombination(subsetSize, setSize) > 0) {
-      _printer(subsetSize);
-    }
   }
 
   List<List<int>> getSubsetCombinations(subsetSize, setSize) {
@@ -127,9 +101,9 @@ class CombinationGenerator {
 void main() {
   var cg = new CombinationGenerator();
 
-  cg.printSubsetCombinations(3, 5);
+  print(cg.getSubsetCombinations(3, 4));
 
-  var indexes = cg.getAllSetCombinations(4);
+  print(""); // new line to see results better
 
-  print(indexes);
+  print(cg.getAllSetCombinations(4));
 }
